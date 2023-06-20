@@ -18,18 +18,31 @@ function App() {
                     </Link></h1>
                     <div className="buttons">
                         <button className="button is-info"
-                                onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons']})}>Invalidate API
+                                onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons']})}>Invalidate All
                         </button>
-                        <button className="button is-success"
-                                onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons', 'episodeDetail', {seasonNo: '2'}]})}>Season
+                        <button className="button is-info"
+                                onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons', 'episodeDetail']})}>Invalidate
+                            All Episodes
+                        </button>
+                        <button className="button is-info"
+                                onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons', 'episodeDetail', {seasonNo: '2'}]})}>Invalidate
+                            Season
                             2
+                        </button>
+                        <button className="button is-info"
+                                onClick={() => queryClient.invalidateQueries({
+                                    queryKey: ['simpsons', 'episodeDetail', {
+                                        seasonNo: '1',
+                                        episodeNo: '3'
+                                    }]
+                                })}>Invalidate S1E3
                         </button>
                     </div>
                     <Routes>
                         <Route path="/" element={<EpisodeList/>}/>
                         <Route path="/season/*" element={<Episode/>}/>
                     </Routes>
-                    <ReactQueryDevtools initialIsOpen={false}/>
+                    <ReactQueryDevtools initialIsOpen={true}/>
                 </div>
             </section>
         </QueryClientProvider>
