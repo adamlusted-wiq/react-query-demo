@@ -11,7 +11,6 @@ export const EpisodeList = () => {
     if (isError) return <h1>Whoops...</h1>
     if (isLoading) return <h1>Loading...</h1>
 
-
     return (
         <div>
             <div className="columns is-multiline">
