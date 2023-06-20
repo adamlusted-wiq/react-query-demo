@@ -12,3 +12,4 @@ npm start
 - [React Query](https://tanstack.com/query/latest)
 - [useQuery](https://tanstack.com/query/v4/docs/react/reference/useQuery)
 - [Query Invalidation](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
+- [Simpsons API](https://sampleapis.com/api-list/simpsons)
