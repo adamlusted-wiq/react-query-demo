@@ -7,7 +7,6 @@ export const Episode = () => {
 
     useEffect(() => {
         fetch('https://api.sampleapis.com/simpsons/episodes').then(res => res.json()).then(ep => setEpisodes(ep.find(e => {
-            console.log(episodeNo)
             if (JSON.stringify(e.episode) === episodeNo && JSON.stringify(e.season) === seasonNo) return e
         })))
     }, [window.location.href])
