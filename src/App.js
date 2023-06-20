@@ -24,9 +24,6 @@ function App() {
                                 onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons', 'episodeDetail', {seasonNo: '2'}]})}>Season
                             2
                         </button>
-                        {/*<button className="button is-success">Success</button>*/}
-                        {/*<button className="button is-warning">Warning</button>*/}
-                        {/*<button className="button is-danger">Danger</button>*/}
                     </div>
                     <Routes>
                         <Route path="/" element={<EpisodeList/>}/>
