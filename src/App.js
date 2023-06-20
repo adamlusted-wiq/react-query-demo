@@ -1,25 +1,22 @@
 import './App.css';
-import {useState} from "react";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
+import {News} from "./News";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+
 
 function App() {
-    const [data, setData] = useState([]);
-    fetch('https://api.spaceflightnewsapi.net/v3/articles')
-        .then(res => res.json())
-        .then(data => setData(data));
+    const queryClient = new QueryClient();
 
+    return (
+        <QueryClientProvider client={queryClient}>
+            <div>
+                <News/>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </div>
 
-  return (
-    <div className="App">
-      <header className="App-header">
-          <h1>NEWSSSSS</h1>
-          <ul>
-          {data.map(article => {
-              return <li>{article.title}</li>
-          })}
-          </ul>
-      </header>
-    </div>
-  );
+        </QueryClientProvider>
+    );
 }
 
 export default App;
