@@ -1,16 +1,22 @@
-import {useEffect, useState} from "react";
+import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router-dom";
 
 export const Episode = () => {
     const [, seasonNo, episodeNo] = window.location.href.match(/\d+/g);
-    const [ep, setEpisodes] = useState()
 
-    useEffect(() => {
-        fetch('https://api.sampleapis.com/simpsons/episodes').then(res => res.json()).then(ep => setEpisodes(ep.find(e => {
-            if (JSON.stringify(e.episode) === episodeNo && JSON.stringify(e.season) === seasonNo) return e
-        })))
-    }, [window.location.href])
+    const {
+        data: ep,
+        isLoading,
+        isError
+    } = useQuery(['simpsons', 'episodeDetail', {
+        seasonNo,
+        episodeNo
+    }], () => fetch('https://api.sampleapis.com/simpsons/episodes').then(res => res.json()).then(ep => ep.find(e => {
+        if (JSON.stringify(e.episode) === episodeNo && JSON.stringify(e.season) === seasonNo) return e
+    })))
 
+    if (isError) return <h1>Whoops...</h1>
+    if (isLoading) return <h1>Loading...</h1>
 
     return (
         <div className="card">

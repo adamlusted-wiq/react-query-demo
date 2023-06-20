@@ -16,6 +16,18 @@ function App() {
                     <h1 className="title"><Link to={`/`}>
                         Simpsons Explorer
                     </Link></h1>
+                    <div className="buttons">
+                        <button className="button is-info"
+                                onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons']})}>Invalidate API
+                        </button>
+                        <button className="button is-success"
+                                onClick={() => queryClient.invalidateQueries({queryKey: ['simpsons', 'episodeDetail', {seasonNo: '2'}]})}>Season
+                            2
+                        </button>
+                        {/*<button className="button is-success">Success</button>*/}
+                        {/*<button className="button is-warning">Warning</button>*/}
+                        {/*<button className="button is-danger">Danger</button>*/}
+                    </div>
                     <Routes>
                         <Route path="/" element={<EpisodeList/>}/>
                         <Route path="/season/*" element={<Episode/>}/>
