@@ -1,8 +1,7 @@
 import './App.css';
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
-import {News} from "./News";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
+import {Episodes} from "./Episodes";
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 
 
 function App() {
@@ -10,10 +9,19 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <div>
-                <News/>
-                <ReactQueryDevtools initialIsOpen={false} />
-            </div>
+            <section className="section">
+                <div className="container">
+                    <h1 className="title">
+                        Hello World
+                    </h1>
+                    <p className="subtitle">
+                        My first website with <strong>Bulma</strong>!
+                    </p>
+                    <Episodes/>
+                    <ReactQueryDevtools initialIsOpen={false}/>
+                </div>
+            </section>
+
 
         </QueryClientProvider>
     );
