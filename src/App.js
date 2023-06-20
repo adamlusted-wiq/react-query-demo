@@ -23,8 +23,6 @@ function App() {
                     <ReactQueryDevtools initialIsOpen={false}/>
                 </div>
             </section>
-
-
         </QueryClientProvider>
     );
 }

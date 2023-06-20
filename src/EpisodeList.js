@@ -1,18 +1,21 @@
-import {useEffect, useState} from "react";
+import {useQuery} from "@tanstack/react-query";
 import {Link} from "react-router-dom";
 
 export const EpisodeList = () => {
-    const [episodes, setEpisodes] = useState([])
+    const {
+        data,
+        isLoading,
+        isError
+    } = useQuery(['simpsons', 'episodesList'], () => fetch('https://api.sampleapis.com/simpsons/episodes').then(res => res.json()))
 
-    useEffect(() => {
-        fetch('https://api.sampleapis.com/simpsons/episodes').then(res => res.json()).then(ep => setEpisodes(ep))
-    }, [])
+    if (isError) return <h1>Whoops...</h1>
+    if (isLoading) <h1>Loading...</h1>
 
 
     return (
         <div>
             <div className="columns is-multiline">
-                {episodes.map(ep => (
+                {(data ?? []).map(ep => (
                     <div className="column is-one-quarter">
                         <div className="card">
                             <div className="card-image">
@@ -29,7 +32,8 @@ export const EpisodeList = () => {
                                         </figure>
                                     </div>
                                     <div className="media-content">
-                                        <Link to={`/season/${ep.season}/episode/${ep.episode}`}><p className="title is-4">{ep.name}</p></Link>
+                                        <Link to={`/season/${ep.season}/episode/${ep.episode}`}><p
+                                            className="title is-4">{ep.name}</p></Link>
                                         <p className="subtitle is-6">{ep.rating}</p>
                                     </div>
                                 </div>
